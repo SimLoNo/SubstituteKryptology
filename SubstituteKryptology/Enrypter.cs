@@ -9,20 +9,20 @@ namespace SubstituteKryptology
     public class Enrypter
     {
 
-        public string Encrypt(string text)
+        public string Encrypt(string text, int displaceAmount)
         {
             string returnText = "";
             char newSign;
             foreach (char sign in text)
             {
                 int unicode = sign;
-                if (unicode < 127)
+                if (unicode < 128)
                 {
-                    unicode++;
-                }
-                else if (unicode == 127)
-                {
-                    unicode = 1;
+                    unicode += displaceAmount;
+                    if (unicode > 127)
+                    {
+                        unicode -= 127;
+                    }
                 }
                 else { continue; }
 
@@ -32,20 +32,21 @@ namespace SubstituteKryptology
             return returnText;
         }
 
-        public string Decrypt(string text) 
+        public string Decrypt(string text, int displaceAmount) 
         {
             string returnText = "";
             char newSign;
             foreach (char sign in text)
             {
                 int unicode = sign;
-                if (unicode >1 && unicode < 128)
+                if (unicode < 128)
                 {
-                    unicode--;
-                }
-                else if (unicode == 1)
-                {
-                    unicode = 127;
+                    unicode-= displaceAmount;
+                    if (unicode < 1)
+                    {
+                        unicode +=127;
+
+                    }
                 }
                 else { continue; }
 

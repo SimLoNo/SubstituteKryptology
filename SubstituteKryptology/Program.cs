@@ -1,9 +1,12 @@
 ﻿Console.WriteLine("Indsæt text.");
 string text = Console.ReadLine();
+Console.WriteLine("Indtast antal tegn der skal forflyttes:");
+string recievedAmount = Console.ReadLine();
+int displaceAmount = Convert.ToInt32(recievedAmount);
 SubstituteKryptology.Enrypter encrypter = new SubstituteKryptology.Enrypter();
-string encryptedText = encrypter.Encrypt(text);
+string encryptedText = encrypter.Encrypt(text, displaceAmount);
 Console.WriteLine(encryptedText);
-string decryptedText = encrypter.Decrypt(encryptedText);
+string decryptedText = encrypter.Decrypt(encryptedText, displaceAmount);
 Console.WriteLine("Original text:");
 Console.WriteLine(text);
 
